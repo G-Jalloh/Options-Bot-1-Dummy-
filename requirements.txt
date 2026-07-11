@@ -1,0 +1,51 @@
+# ═══════════════════════════════════════════════════════════
+# .env.example — Copy this file to .env and fill in your keys
+# ═══════════════════════════════════════════════════════════
+# cp .env.example .env
+# (Windows PowerShell): copy .env.example .env
+# ─────────────────────────────────────────────────────────
+
+# ── Webull Developer API Credentials ─────────────────────
+# Get from: https://developer.webull.com
+# Leave as REPLACE_ME to run in simulation mode (no credentials needed)
+WEBULL_APP_KEY=REPLACE_ME
+WEBULL_APP_SECRET=REPLACE_ME
+
+# Webull environment: "test" (paper) or "prod" (live)
+# ALWAYS use "test" while developing. Switch to "prod" only after
+# full end-to-end testing with paper trading.
+WEBULL_ENV=test
+
+# ── Options Flow Database ─────────────────────────────────
+# Path to the SQLite database written by your options-flow-engine
+# (the Webull MQTT streaming pipeline). If the file is missing,
+# the WhaleHunterAgent will use synthetic sweep data for testing.
+DB_PATH=options_flow.db
+
+# ── Scanning Cadence ──────────────────────────────────────
+# How many seconds between each agent scan cycle
+CYCLE_SECONDS=60
+
+# ── Flow Detection Thresholds ─────────────────────────────
+# Minimum contract size to qualify as a "whale" sweep
+MIN_SWEEP_SIZE=500
+
+# How far back (in minutes) to look for qualifying sweeps
+FLOW_LOOKBACK_MINS=60
+
+# ── Entry Quality Filter ──────────────────────────────────
+# Minimum technical score (out of 3) required to enter a trade
+# 2 = requires at least 2 of: EMA alignment, RSI zone, EMA 50 side
+MIN_TECH_SCORE=2
+
+# ── Position Sizing ───────────────────────────────────────
+# Your total account size (used for position sizing math)
+ACCOUNT_SIZE=10000
+
+# Max risk per trade as a fraction of account (0.01 = 1%)
+RISK_PCT=0.01
+
+# ── Exit Parameters ───────────────────────────────────────
+# ATR multiplier for Chandelier trailing stop
+# 2.0 = stop placed 2×ATR below highest seen price
+CHANDELIER_MULT=2.0
